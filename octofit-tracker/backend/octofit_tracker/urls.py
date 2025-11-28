@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # API endpoints for OctoFit tracker
     path('api/', include('tracker.urls')),
+    # Redirect root to API health endpoint
+    path('', RedirectView.as_view(url='/api/health/')),
 ]
